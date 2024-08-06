@@ -1,4 +1,4 @@
-name: Model Training and Evaluations
+name: Model Training and Evaluation
 
 on:
   push:
@@ -30,18 +30,14 @@ jobs:
       run: |
         python model.py
         python experiment.py
-        python gridSearchCV.py
+        python GridSearchCV.py
 
-    - name: Commit and push the model files
+    - name: Commit and push the model file
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git add model_20240801184047.joblib
-        git add exp_bestmodel_20240801_191151.joblib
-        git add exp_bestmodel_20240801_194023.joblib
-        git add 20240801_163255_best_model.joblib
         git add report.md
         git commit -m "Add model and report with timestamp"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
